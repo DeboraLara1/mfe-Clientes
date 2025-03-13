@@ -1,0 +1,85 @@
+<header class="header">
+  <div class="header-content">
+    <div class="left">
+      <button (click)="onOpenMenu()">
+        <img
+          src="https://s3-alpha-sig.figma.com/img/f999/0b02/781495ebb6b70f1a786769719be0afc9?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=U~ARNC7mcPhjCcNMgI87ck4LQVQ87KZLS-bqJnvoormhFKS6zdpSnegDK3Lozj5f1lYqEZRzlxNXYqIqjIvqGpW8SXq1~bTnHQjEke7qq~cQEqny86johSJgtGTTDcj9r9EMPcz~cyzkxcBfqZIDOh~ZndN0XyEGxuqcdb0iwuY~40zI63Ma1c2iE4PXZZYrQWzUHqFPM2kGACJ5lql-DFU7EJIFXUttMh85NsveizOi2NkGyKKaK~KSPSMfla9l12~--nHJYS1TfHC2vdyZvz64xmpwJmFReAJp-7EA-HrYJY~~Jfo93DjdHFK6hhpkTiOO7ePO5p9p8DixOnjDqg__"
+          alt="Icon menu"
+        />
+      </button>
+      <img
+        src="https://s3-alpha-sig.figma.com/img/4275/10ac/9ece7d6223d4590e314f0de127d95ff9?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=TpLFiw5E6Alg~8AxiamEa5U6MJXVjczAMRVAv1Stwi~5ZqKobN4X1bKt0KXQrAzQIem16ORD9rEM5~99biJZSGhmiJ6Kp~Pk9Zv748RyzToRPRi4H-Db-zAbVa3AKzTV2mqtCMAzyCzlVHSmYyTWlwBp6wuuiVerbsUChUng0twkv5eZkG~pziVy7t6AzQTsi6IJv5v1kuPGfJJJpMidHD0N53~JE-cu179xjAt0xoW8rIUE3GOJS35cjG6LKaR6RE~xbNKTCV2~TRa8SerUBox-4H0SY5px9QGFsegoBAW3MsOOQHp~22l5Eya9vQrHs8wFkI4mXneDEU5cb3hpow__"
+        alt="logo"
+      />
+    </div>
+    <div class="menu-header">
+      <p>Clientes</p>
+      <p>Clientes selecionados</p>
+      <p>Sair</p>
+    </div>
+    <div class="right">
+      <p>Olá, Usuário!</p>
+    </div>
+  </div>
+</header>
+<ng-container *ngIf="isOpenMenu" class="menu">
+  <ng-container *ngComponentOutlet="MenuComponent; injector: modalInjector"></ng-container>
+</ng-container>
+<div class="container">
+  <div class="info">
+    <strong>{{ cardData?.clients?.length || 0 }}</strong>
+    <span> clientes encontrados</span>
+  </div>
+
+  <div class="card-container">
+    <div *ngFor="let client of cardData.clients" class="card">
+      <div class="card-content">
+        <div class="info">
+          <h3>{{ client.name }}</h3>
+          <p>
+            Salário: <strong>R$ {{ client.salary }}</strong>
+          </p>
+          <p>
+            Empresa: <strong>R$ {{ client.companyValuation }}</strong>
+          </p>
+        </div>
+        <div class="icons">
+          <button class="icon-btn" (click)="onOpenModalAdd()">
+            <img
+              src="https://s3-alpha-sig.figma.com/img/c847/fa7c/426c4c9558e1e903194ffa213346d977?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Md4QgKHhCWAioyQxCAXKRnOvjMynF7AX5OR8vmNc97gtS9tOwTUJvjBa2s6FSt~Y0-QPURcRSqUXLwcpHYuCAKBT1EO3Aog6S2NDH7nMWs7OFh0UWttvmuTzKlUVRJ8LQp2z1aIq0JK2my9Baq14uDZPxBjbC2LC6RsmeJUpxMyhSKIcH~xBRC~eWom9-cf223ZIbHjHwuHE9eOksL9uoCyEN1aAOhJiOU-JVN~2ZT-uisyl6m1leqogzcJH0D39RKjwsuzht7aUwGd3rjc4ncyHY-iEOApkrB5-2UL1QtNBSYKRghcRCq~d~YAIrtncC96ilTG0f9UZVw8IsNsDNQ__"
+              alt="Adicionar"
+            />
+          </button>
+          <button class="icon-btn" (click)="onOpenModalEdit(client)">
+            <img
+              src="https://s3-alpha-sig.figma.com/img/5f5b/6ab9/740a76ff539221f91b86b5211f61755e?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=RC-7He3nd-xfQrNM3g4j6YvrQNyo1bVSKTctoxRYT5t1vipMWOs4YRxfAQHZ4-ud3zdytC9VoCXop9nlImQ3VLYOO97kX9PC6J06n6Vp0VocoAQl~OdxxeSrl1WDOEscHiqQaeQHCyefwPnseZ7M9VT7k0baDZoiVVXHD7chIUMLGpLxbG5H3MYC-j7EgrCSS0jv~V570NhRJx3UU6CVfosQlJunjAhOFG7BS0GOj5xp7w9JNldQNlHYkmfBhRkis6lrDNPLDtOgEYcoVmnZcDkBvD7oHoKlfkYVeS8kzkRxY0QaTVxljQ5tU1nAfCP1JNwmHX5PtmLTUqLno1gwMg__"
+              alt="Editar"
+            />
+          </button>
+          <button class="icon-btn" (click)="onOpenModalDelete(client.id)">
+            <img
+              src="https://s3-alpha-sig.figma.com/img/4065/14cd/778b8de0a46e6d62ed183b78ed28c496?Expires=1742774400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=Bj0JsBDDEdZwi3TFKuSLMS0kJ7qM0LDLWf4LrzuyJEQUIlLbRew-ztQVPiTI304JUQNPqtWuIfry~THeQkZcdx2b6eZ6ztC60P9sAaamj-h-4rMLBGBsuSCbuJ5SN6ZBZ3WzwCefXC8gvxTEEH3Jx2~VkgXcczHShQLakePJKVCUkdFttjsC9DDs3hPeWGGZjQbSqzPjAv8lw2un4WRNxNOKC0fPx8q9M3Qxh2SwJwe8e1LlGYwUJSOqzj~s8Xhdi6ZTJRa9XwtGercyXfnH4VMGH-8LTm4glZL02Y5lCmSfE~s1jDDFFsweIWoW6-kIorLwjmsQJM4Kh65nr~z3Bw__"
+              alt="Remover"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="isModalOpenAdd">
+    <ng-container *ngComponentOutlet="ModalnewclienteComponent; injector: modalInjector"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="isModalOpenEdit">
+    <ng-container *ngComponentOutlet="ModaleditComponent; injector: modalInjector"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="isModalOpendelete">
+    <ng-container *ngComponentOutlet="ModaldeleteclienteComponent; injector: modalInjector"></ng-container>
+  </ng-container>
+
+  <button class="custom-button" (click)="onOpenModalAdd()">Entrar</button>
+  <router-outlet></router-outlet>
+</div>
+<router-outlet></router-outlet>
