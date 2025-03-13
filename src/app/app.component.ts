@@ -74,12 +74,6 @@ export class AppComponent implements OnInit {
       });
 
       //uso dos componentes
-      this.HeaderComponent = await loadRemoteModule({
-        type: 'module',
-        remoteEntry: this.URLremoteEntry,
-        exposedModule: './Header',
-      }).then((m) => m.HeaderComponent);
-
       this.ButtonLongComponent = await loadRemoteModule({
         type: 'module',
         remoteEntry: this.URLremoteEntry,
